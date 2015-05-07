@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--菜单所在位置-->
+    <attr name="position" format="enum">
+        <enum name="left_top" value="1" />
+        <enum name="right_top" value="2" />
+        <enum name="left_bottom" value="4" />
+        <enum name="right_bottom" value="8" />
+    </attr>
+    <!--半径-->
+    <attr name="radius" format="dimension"/>
+    <declare-styleable name="SateliteMenu">
+        <attr name="position" />
+        <attr name="radius" />
+    </declare-styleable>
+</resources>

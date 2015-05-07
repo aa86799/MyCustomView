@@ -2,6 +2,7 @@ package com.stone.customview;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,20 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected String doInBackground(Void... params) {
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+            }
+        }.execute();
+
     }
 
     public void expandableListView(View view) {
@@ -23,6 +38,9 @@ public class MainActivity extends Activity {
 
     public void myExpLv(View view) {
         startActivity(new Intent(this, MyExpLvActivity.class));
+    }
+    public void contacts(View view) {
+        startActivity(new Intent(this, ContactsActivity.class));
     }
 
 
@@ -41,7 +59,6 @@ public class MainActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

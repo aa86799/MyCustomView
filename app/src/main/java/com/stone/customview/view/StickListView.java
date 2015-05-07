@@ -22,7 +22,10 @@ import com.stone.customview.util.ViewUtil;
  * time   : 15/4/28 10 40
  *
  */
-// 仿pinnedheaderexpandablelistview 项目
+/*
+ 仿 pinnedheaderexpandablelistview 项目  本类未写全：touch-header时相关代码
+ pinnedheaderexpandablelistview 也有个bug：当group和子view不一样高时 header的滑入顶出效果不对了
+  */
 /*
 本类编写步骤：
 1. 首先定义出该类，重写构造方法

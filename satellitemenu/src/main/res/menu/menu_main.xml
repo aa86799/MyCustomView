@@ -10,7 +10,7 @@
         android:id="@+id/action_rightTop"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="中上" />
+        android:title="右上" />
     <item
         android:id="@+id/action_leftBottom"
         android:orderInCategory="100"

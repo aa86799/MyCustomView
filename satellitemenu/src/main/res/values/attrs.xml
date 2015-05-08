@@ -7,7 +7,7 @@
         <enum name="left_bottom" value="4" />
         <enum name="right_bottom" value="8" />
     </attr>
-    <!--半径-->
+    <!--半径 -->
     <attr name="radius" format="dimension"/>
     <declare-styleable name="SateliteMenu">
         <attr name="position" />

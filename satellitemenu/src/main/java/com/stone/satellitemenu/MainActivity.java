@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.stone.satellitemenu.view.SateliteMenu;
 
@@ -19,6 +21,13 @@ public class MainActivity extends Activity {
 
         mSateliteMenu = (SateliteMenu) findViewById(R.id.sm_menu);
 
+        mSateliteMenu.setOnMenuItemClickListener(new SateliteMenu.onMenuItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getApplicationContext(), view.getTag().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -32,16 +41,19 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.action_leftTop) {
+            mSateliteMenu.setPosition(SateliteMenu.Position.POS_LEFT_TOP);
             return true;
         }
         if (id == R.id.action_rightTop) {
-
+            mSateliteMenu.setPosition(SateliteMenu.Position.POS_RIGHT_TOP);
             return true;
         }
         if (id == R.id.action_leftBottom) {
+            mSateliteMenu.setPosition(SateliteMenu.Position.POS_LEFT_BOTTOM);
             return true;
         }
         if (id == R.id.action_rightBottom) {
+            mSateliteMenu.setPosition(SateliteMenu.Position.POS_RIGHT_BOTTOM);
             return true;
         }
 

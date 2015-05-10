@@ -1,1 +1,2 @@
-include ':app', ':draglistview', ':draglistviewdemo', ':pinnedheaderexpandablelistview', ':satellitemenu'
+include ':app', ':draglistview', ':draglistviewdemo', ':pinnedheaderexpandablelistview',
+        ':satellitemenu', ':rouletteview'

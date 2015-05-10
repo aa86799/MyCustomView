@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.stone.roulette.View.RouletteSurfaceView
+        android:id="@+id/rv_roulette"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        rv:part="12">
+
+    </com.stone.roulette.View.RouletteSurfaceView>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="start"
+        android:textColor="#abbb65"
+        android:text="启动" />
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btn_start"
+        android:layout_alignParentBottom="true"
+        android:textColor="#ff5565"
+        android:onClick="stop"
+        android:text="停止" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_start"
+        android:onClick="parts"
+        android:textColor="#ab00ff"
+        android:text="等分圆(点一次加1等份,最多12份)" />
+</RelativeLayout>

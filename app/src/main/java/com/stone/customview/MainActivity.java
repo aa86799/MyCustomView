@@ -2,6 +2,7 @@ package com.stone.customview;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.opengl.GLES31;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,7 +30,6 @@ public class MainActivity extends Activity {
                 super.onPostExecute(s);
             }
         }.execute();
-
     }
 
     public void expandableListView(View view) {

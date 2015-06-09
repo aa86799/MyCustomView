@@ -42,6 +42,10 @@ public class MainActivity extends Activity {
     public void contacts(View view) {
         startActivity(new Intent(this, ContactsActivity.class));
     }
+    public void puzzle(View view) {
+//        startActivity(new Intent(this, PuzzleActivity.class));
+        startActivity(new Intent(this, PuzzleActivity2.class));
+    }
 
 
     @Override

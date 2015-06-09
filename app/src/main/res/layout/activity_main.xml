@@ -25,5 +25,10 @@
         android:layout_height="wrap_content"
         android:onClick="contacts"
         android:text="联系人效果" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="puzzle"
+        android:text="拼图" />
 
 </LinearLayout>

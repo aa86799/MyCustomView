@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.stone.customview"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:maxSdkVersion="10"
+        android:minSdkVersion="7"
+        android:targetSdkVersion="8" />
+    
+    <!-- drag gridview 需要震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.stone.customview.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RefreshListViewActi" />
+        <activity android:name=".ScrollViewActivityUseSystemScroller" />
+        <activity android:name=".ScrollViewActivity" />
+        <activity android:name=".ScrollViewOriginalActivity" />
+        <activity android:name=".WaterWaveActivity" />
+        <activity android:name=".WaterWaveWithMoveActivity" />
+        <activity android:name=".WaterFallActivity" />
+        <activity android:name=".DragGridActivity" />
+        <activity android:name=".CircleActivity" />
+    </application>
+
+</manifest>

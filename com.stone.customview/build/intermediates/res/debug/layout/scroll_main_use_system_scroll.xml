@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </RadioGroup>
+
+    <com.stone.customview.widget.MyScrollViewUseSystemScroller
+        android:layout_below="@id/radio_group"
+        android:id="@+id/myscrollVew"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</RelativeLayout><!-- From: file:/Users/stone/Documents/project_AS/CustomView/com.stone.customview/res/layout/scroll_main_use_system_scroll.xml -->

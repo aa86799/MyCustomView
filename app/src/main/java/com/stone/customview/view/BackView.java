@@ -43,7 +43,7 @@ public class BackView extends ViewGroup {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        mBack = BitmapFactory.decodeResource(getResources(), R.drawable.p0, options);
+        mBack = BitmapFactory.decodeResource(getResources(), R.drawable.pa0, options);
         //有options后 ，此时返回的bitmap为null
 //        backw = mBack.getWidth();
 //        backh = mBack.getHeight();

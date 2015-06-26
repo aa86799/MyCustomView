@@ -30,5 +30,10 @@
         android:layout_height="wrap_content"
         android:onClick="puzzle"
         android:text="拼图" />
+  <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testview"
+        android:text="testview" />
 
 </LinearLayout>

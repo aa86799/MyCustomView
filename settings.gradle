@@ -1,2 +1,2 @@
-include ':app', ':draglistview', ':draglistviewdemo', ':pinnedheaderexpandablelistview',
-        ':satellitemenu', ':rouletteview'
+include ':app', ':draglistview', ':draglistviewdemo', ':pinnedheaderexpandablelistview', ':treeview', ':shapeimageview', ':shapeimageviewsample',
+        ':satellitemenu', ':rouletteview', ':com.stone.customview'

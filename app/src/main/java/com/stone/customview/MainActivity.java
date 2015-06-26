@@ -2,7 +2,6 @@ package com.stone.customview;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.opengl.GLES31;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -45,6 +44,10 @@ public class MainActivity extends Activity {
     public void puzzle(View view) {
 //        startActivity(new Intent(this, PuzzleActivity.class));
         startActivity(new Intent(this, PuzzleActivity2.class));
+    }
+
+    public void testview(View view) {
+        startActivity(new Intent(this, TestCanvasActivity.class));
     }
 
 

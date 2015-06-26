@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.Region;
 import android.view.MotionEvent;
 import android.view.View;
@@ -133,21 +134,20 @@ public class MyImageLayout2 extends View {
 
 //            canvas.clipPath(path, Region.Op.INTERSECT);//相交
 //            canvas.clipPath(path, Region.Op.UNION);//并集
-            canvas.clipPath(path, Region.Op.REPLACE);//替换
+//            canvas.clipPath(path, Region.Op.REPLACE);//替换
 //            canvas.clipPath(path, Region.Op.DIFFERENCE);//差异 不同  显示不同区
 //            canvas.clipPath(path, Region.Op.REVERSE_DIFFERENCE);//反向：差异 不同  如果前置了DIFFERENCE  可以通过该项 反转
 //            canvas.clipPath(path, Region.Op.XOR);//异或集  相交区空出，其他区可见
 
             canvas.clipPath(path);//默认INTERSECT
-            canvas.save();
 
             Paint paint = new Paint();
-            paint.setColor(Color.argb(20, 125, 125, 125));//透明灰
+//            paint.setColor(Color.argb(20, 125, 125, 125));//透明灰
+            paint.setColor(Color.argb(255, 0xff, 125, 125));//透明灰
 //            paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 //            paint.setStyle(Paint.Style.STROKE);
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
             canvas.drawPath(path, paint);
-            canvas.restore();
 
             canvas.drawBitmap(mImgitmap, 0, 0, null);
 
@@ -168,6 +168,8 @@ public class MyImageLayout2 extends View {
 
         options.inJustDecodeBounds = false;
         options.inPreferredConfig = Bitmap.Config.ARGB_4444;
+
+
 //        options.inSampleSize = 2;
         Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
         try {
@@ -223,6 +225,7 @@ public class MyImageLayout2 extends View {
                 count++;
             }
         }
+
         Bitmap bitmap = Bitmap.createBitmap(mArrayColor, mBitmapWidth, mBitmapHeight, Bitmap.Config.ARGB_4444);
         return bitmap;
     }
@@ -238,6 +241,14 @@ public class MyImageLayout2 extends View {
     float downy;
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
+//        int[] location = new int[2];
+//        getLocationOnScreen(location);
+//        int x = location[0];
+//        int y = location[1];
+//        getLocationInWindow(location);
+//        int xx = location[0];
+//        int yy = location[1];
+//        System.out.println("f"+x + "," + y + "," + xx + "," + yy);
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:

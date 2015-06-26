@@ -60,7 +60,7 @@ public class PuzzleLayout extends RelativeLayout {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        back = BitmapFactory.decodeResource(getResources(), R.drawable.p0, options);
+        back = BitmapFactory.decodeResource(getResources(), R.drawable.pa0, options);
         //有options后 ，此时返回的bitmap为null
 //        backw = back.getWidth();
 //        backh = back.getHeight();

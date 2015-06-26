@@ -187,6 +187,7 @@ public class RouletteSurfaceView extends SurfaceView implements SurfaceHolder.Ca
         }
 
     }
+
     private void myDraw() {
         try {
             mCanvas = mSurfaceHolder.lockCanvas();
@@ -264,60 +265,5 @@ public class RouletteSurfaceView extends SurfaceView implements SurfaceHolder.Ca
         return Color.parseColor("#" + sb.toString());
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                mDeltaAngle = mAngle % 360;
-                System.out.println("mDeltaAngle" + mDeltaAngle);
-                //计算触摸的位置
-                float x = event.getX();
-                float y = event.getY();
-                System.out.println(whichSector(x, y, mRadius));
-                break;
-        }
-        return super.onTouchEvent(event);
-    }
 
-    /**
-     * 计算点在那个扇形区域
-     * @param X
-     * @param Y
-     * @param R 半径
-     * @return
-     */
-    private int whichSector(double X, double Y, double R) {
-
-        double mod;
-        mod = Math.sqrt(X * X + Y * Y); //将点(X,Y)视为复平面上的点，与复数一一对应，现求复数的模。
-        double offset_angle;
-        double arg;
-        arg = Math.round(Math.atan2(Y, X) / Math.PI * 180);//求复数的辐角。
-        arg = arg < 0? arg+360:arg;
-        if(mAngle%360 < 0){
-            offset_angle = 360+mAngle%360;
-        }else{
-            offset_angle = mAngle%360;
-        }
-        if (mod > R) { //如果复数的模大于预设的半径，则返回0。
-            return -2;
-        } else { //根据复数的辐角来判别该点落在那个扇区。
-            for(int i=0; i<mPart; i++){
-                if(isSelect(arg, i,offset_angle) || isSelect(360+arg, i,offset_angle)){
-                    return i;
-                }
-            }
-        }
-        return -1;
-    }
-    /**
-     * 判读该区域是否被选中
-     * @param arg 角度
-     * @param i
-     * @param offsetAngle 偏移角度
-     * @return 是否被选中
-     */
-    private boolean isSelect(double arg, int i, double offsetAngle) {
-        return arg>(i*mAngle+offsetAngle%360) && arg<((i+1)*mAngle+offsetAngle%360);
-    }
 }

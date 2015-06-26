@@ -6,4 +6,5 @@
     <string name="title_activity_expandable_list_view">ExpandableListView</string>
     <string name="title_activity_contacts">ContactsActivity</string>
     <string name="PuzzleActivity">PuzzleActivity</string>
+    <string name="title_activity_test_view">TestViewActivity</string>
 </resources>

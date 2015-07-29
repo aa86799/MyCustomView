@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="guaguaka">
+        <attr name="text" format="string|reference"/>
+        <!--有奖-->
+        <attr name="isAward" format="boolean"/>
+        <attr name="textSize" format="dimension|reference"/>
+        <attr name="textColor" format="color|reference"/>
+    </declare-styleable>
+</resources>

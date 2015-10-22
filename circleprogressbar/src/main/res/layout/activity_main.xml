@@ -12,8 +12,14 @@
 
     <com.stone.circleprogressbar.view.CircleProgressbar
         android:id="@+id/cp_bar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="600dp"
+        android:layout_height="600dp"
         circle:barColor="#abc777"
         circle:textColor="#ff0000"/>
+    <com.stone.circleprogressbar.view.ObliqueProgressbar
+        android:id="@+id/op_bar"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:background="#abc777"/>
 </RelativeLayout>

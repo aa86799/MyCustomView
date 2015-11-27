@@ -68,7 +68,6 @@ public class GuaView extends View {
         int indexCount = typedArray.getIndexCount();
         for (int i = 0; i < indexCount; i++) {
             int attrIndex = typedArray.getIndex(i);
-            System.out.println(attrIndex);
             switch (attrIndex) {
                 case R.styleable.guaguaka_text:
                     mInfo = typedArray.getString(attrIndex);

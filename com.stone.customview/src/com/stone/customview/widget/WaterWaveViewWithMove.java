@@ -15,6 +15,11 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * author : stone
+ * email  : aa86799@163.com
+ * time   : 15/3/2 14 15
+ */
 public class WaterWaveViewWithMove extends View {
 	
 	private Wave wave;
@@ -37,11 +42,10 @@ public class WaterWaveViewWithMove extends View {
 			for (Iterator iterator = wavesList.iterator(); iterator.hasNext();) {
 				Wave wave = (Wave) iterator.next();
 				
-				//透明度变暗 即变低
+				//透明度 越低越透明
 				int alpha = wave.paint.getAlpha() - 5;
 				if (alpha < 0) {
 					iterator.remove();
-//					System.out.println("size=" + wavesList.size());
 					continue;
 				}
 				
@@ -59,7 +63,7 @@ public class WaterWaveViewWithMove extends View {
 			
 			invalidate();
 			if (isRunning) {
-				handler.sendEmptyMessageDelayed(0, 80);
+				handler.sendEmptyMessageDelayed(0, 50);
 			}
 		};
 	};
@@ -82,17 +86,17 @@ public class WaterWaveViewWithMove extends View {
 		case MotionEvent.ACTION_MOVE:
 			if (wavesList.size() == 0) {
 				isRunning = true;
-				handler.sendEmptyMessageDelayed(0, 80); //发送消息后，handler遍历wavesList 循环更新
+				handler.sendEmptyMessageDelayed(0, 50); //发送消息后，handler遍历wavesList 循环更新
 			}
-			//不在if里发送msg，会：手指down|move时 才更新一下view
-//			handler.sendEmptyMessageDelayed(0, 80); 
+			//若不在上面的if里发送msg，会：手指down|move时 都会更新一下view
+//			handler.sendEmptyMessageDelayed(0, 50);
 		
 			float x = event.getX();
 			float y = event.getY();
-			//当前点的x或y与最后有效点的x,y距离大于slop值 才添加新的wave
+			//当前点的x或y与最后有效点的x或y距离大于slop值 才添加新的wave
 			if (wavesList.size() > 0) {
 				if (Math.abs(x - wavesList.get(wavesList.size() - 1).x) > xSlop
-						|| Math.abs(y - wavesList.get(wavesList.size() - 1).y) > xSlop) {
+						|| Math.abs(y - wavesList.get(wavesList.size() - 1).y) > ySlop) {
 					wave = new Wave();
 					wave.x = x;
 					wave.y = y;
@@ -146,8 +150,6 @@ public class WaterWaveViewWithMove extends View {
 			paint.setAntiAlias(true);//抗锯齿
 			paint.setStyle(Style.STROKE);//绘制轮廓
 			paint.setColor(getColor());//随机颜色
-//			radius = 3;
-//			paint.setStrokeWidth(radius / 3); //轮廓宽度
 		}
 	}
 

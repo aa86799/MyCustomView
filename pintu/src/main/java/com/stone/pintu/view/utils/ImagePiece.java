@@ -9,7 +9,7 @@ import android.graphics.Bitmap;
  * time   : 15/8/5 14 57
  */
 public class ImagePiece {
-
+    /**索引*/
     public int index;
     public Bitmap bitmap;
 }

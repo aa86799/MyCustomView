@@ -290,7 +290,7 @@ public class GamePintuLayout extends RelativeLayout implements View.OnClickListe
              */
         lp1.leftMargin = mFirst.getLeft() - mPadding;
         lp1.topMargin = mFirst.getTop() - mPadding;
-        mAnimLayout.addView(firstCopy, lp1);
+        mAnimLayout.addView(firstCopy, lp1);//添加复制的第一个view
 
 
         ImageView secondCopy = new ImageView(getContext());
@@ -298,20 +298,20 @@ public class GamePintuLayout extends RelativeLayout implements View.OnClickListe
         LayoutParams lp2 = new LayoutParams(mItemWidth, mItemWidth);
         lp2.leftMargin = mSecond.getLeft() - mPadding;
         lp2.topMargin = mSecond.getTop() - mPadding;
-        mAnimLayout.addView(secondCopy, lp2);
+        mAnimLayout.addView(secondCopy, lp2);//添加复制的第二个view
 
 
         TranslateAnimation firstAnim = new TranslateAnimation(0, mSecond.getLeft() - mFirst.getLeft(),
                 0, mSecond.getTop() - mFirst.getTop());
         firstAnim.setDuration(300);
         firstAnim.setFillAfter(true);
-        firstCopy.startAnimation(firstAnim);
+        firstCopy.startAnimation(firstAnim);//1移动到2
 
         TranslateAnimation secondAnim = new TranslateAnimation(0, mFirst.getLeft() - mSecond.getLeft(),
                 0, mFirst.getTop() - mSecond.getTop());
         secondAnim.setDuration(300);
         secondAnim.setFillAfter(true);
-        secondCopy.startAnimation(secondAnim);
+        secondCopy.startAnimation(secondAnim);//2移动到1
 
         firstAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override

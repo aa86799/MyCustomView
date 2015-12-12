@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
-        android:padding="5dp"
+        android:padding="15dp"
         game:bitmap="@drawable/lxr" />
 
     <RelativeLayout

@@ -25,7 +25,7 @@ public class ImageSplitterUtil {
         /*
         要求切成一个正方形  p*p
          */
-        int pieceWidth = Math.min(w, h) / pieces;
+        int pieceWidth = Math.min(w, h) / pieces; //item宽度
         ImagePiece imagePiece;
         for (int i = 0; i < pieces; i++) {
             for (int j = 0; j < pieces; j++) {
@@ -33,7 +33,6 @@ public class ImageSplitterUtil {
                 imagePiece.index = j + i * pieces;
                 int x = j * pieceWidth;
                 int y = i * pieceWidth;
-
                 imagePiece.bitmap = Bitmap.createBitmap(bitmap, x, y, pieceWidth, pieceWidth);
                 list.add(imagePiece);
             }

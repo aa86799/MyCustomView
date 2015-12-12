@@ -285,11 +285,15 @@ public class GamePintuLayout extends RelativeLayout implements View.OnClickListe
         firstCopy.setImageBitmap(firstImagePiece.bitmap);
         LayoutParams lp1 = new LayoutParams(mItemWidth, mItemWidth);
          /*
-            mAnimLayout 受padding影响
-            若直接addView 则会受padding值影响，所以先减去padding 使其与外层layout一样大小
+            mAnimLayout与item一样受padding影响
+            就不能直播用item的坐标来 添加子view
+            item的坐标减去padding后就是要添加的子view的坐标值
+            如：padding=5， item(5,5,w,h), mAnimLayout(5,5,W,H)
+            mAnimLayout.addView(itemCopy(item-padding));
              */
         lp1.leftMargin = mFirst.getLeft() - mPadding;
         lp1.topMargin = mFirst.getTop() - mPadding;
+//        System.out.println(lp1.leftMargin + "," + lp1.rightMargin);//=>(0,0)
         mAnimLayout.addView(firstCopy, lp1);//添加复制的第一个view
 
 
@@ -324,6 +328,8 @@ public class GamePintuLayout extends RelativeLayout implements View.OnClickListe
             @Override
             public void onAnimationEnd(Animation animation) {
 //if (mFirst == null) System.out.println("动画执行的时候需要设置点击无效 否则会刚好在start时，被上一次置为null, 这时end出现空指针");
+
+                //交换图片与数据
                 mFirst.setImageBitmap(secondImagePiece.bitmap);
                 mSecond.setImageBitmap(firstImagePiece.bitmap);
                 mFirst.setTag(secondTag);
@@ -357,6 +363,9 @@ public class GamePintuLayout extends RelativeLayout implements View.OnClickListe
         }
     }
 
+    /**
+     * 判断序列是否有序
+     */
     private void checkSuccess() {
         boolean isSuccess = true;
         ImageView item;

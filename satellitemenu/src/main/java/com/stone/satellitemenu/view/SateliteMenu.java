@@ -83,10 +83,9 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
         }
         mRadius = (int) typedArray.getDimension(R.styleable.SateliteMenu_radius, defRadius);
 
-
-
         typedArray.recycle(); //回收
 
+        mStatus = STATUS_CLOSE; //默认关闭状态
 
     }
 
@@ -102,24 +101,23 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
 
         View child;
         int count = getChildCount();
-        for (int i = 1; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             child = getChildAt(i);
             child.clearAnimation();
         }
-
-
 //        invalidate(); //会触发 测量、布局和绘制
-        requestLayout(); //这里只要布局
+        requestLayout(); //这里只要请求布局
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //测量子view
         for (int i = 0, count = getChildCount(); i < count; i++) {
+            //需要传入父view的spec
             measureChild(getChildAt(i), widthMeasureSpec, heightMeasureSpec);
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
     }
 
     @Override //lt 左上点  rb 右下点  如果 r<l 或 b<t 则无法显示了
@@ -127,7 +125,7 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
         layoutMenuButton();
         /*
         分析：
-            plus距离每个item为radius。
+            menuButton距离每个item为radius。
             到item作直线，其夹角，应为90度均分。90/(item-1)=每个夹角的度数。
             有角度，就能求出正弦值sina。
             根据正弦公式：sina=a/c，且已知c=radius，求出a边长，即x坐标。
@@ -135,7 +133,7 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
             余弦公式：cosa=b/c,且已知radius(斜边)，求出b边长，即y坐标
          */
         int count = getChildCount();
-        double angle = 90.0f / (count - 2);//这里-2，是多减去了一个plusView
+        double angle = 90.0f / (count - 2);//这里-2，是多减去了一个menuButton
         View child;
         int w,h;
         for (int i = 1; i < count; i++) {
@@ -150,8 +148,8 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
             l = (int) (mRadius * sin); //对横边长
             t = (int) (mRadius * cos); //邻纵边长
 
-            //左上，左下 left值 就是上面的l l递增
-            //左上，右上 top值 就是上面的t  t递减
+            //左上，左下 left值 就是上面的l l递增    符合默认变化规则
+            //左上，右上 top值 就是上面的t  t递减    符合默认变化规则
 
             //右上、右下 left值一样: 从右向左 递减
             if (mPosition == Position.POS_RIGHT_TOP || mPosition == Position.POS_RIGHT_BOTTOM) {
@@ -164,13 +162,25 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
 
             child.layout(l, t, l + w, t + h);
 
+            final int pos = i;
+            child.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mMenuItemClickListener != null) {
+                        mMenuItemClickListener.onItemClick(v, pos);
+                        itemAnim(pos);
+                    }
+                    mStatus = STATUS_CLOSE; //关闭状态
+                }
+            });
 
         }
 
-        mStatus = STATUS_CLOSE; //默认关闭状态
-
     }
 
+    /**
+     * 菜单按钮设置layout
+     */
     private void layoutMenuButton() {
         mMenuButton = getChildAt(0);
         int l = 0, t = 0;
@@ -200,8 +210,8 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        rotateMenuBotton(mMenuButton, 360, 700);
-        toggleMenu(700);
+        rotateMenuBotton(mMenuButton, 360, 500);
+        toggleMenu(500);
 
     }
 
@@ -214,9 +224,10 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
     }
 
     /**
+     * 展开/隐藏子菜单
      * 子菜单动画 平移
      */
-    public void toggleMenu(int duration) {
+    private void toggleMenu(int duration) {
 
         int count = getChildCount();
         for (int i = 1; i < count; i++) {
@@ -229,7 +240,7 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
                    左下   r->l t->b
                    右下   l->r t->b
                open：
-                   左上   左向右
+                   左上
                    右上
                    左下
                    右下
@@ -264,55 +275,55 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
             if (mStatus == STATUS_OPEN) {//如是打开，则要关闭
                 //4个值是起始点和结束点,相对于自身x、y的距离
                 TranslateAnimation tranAnim = new TranslateAnimation(0, stopx, 0, stopy);
-                tranAnim.setStartOffset(100 * i / count);
+                tranAnim.setStartOffset(mRadius/6);//偏移
                 set.addAnimation(tranAnim);
                 AlphaAnimation alphaAnim = new AlphaAnimation(1.0f, 0);
                 set.addAnimation(alphaAnim);
-                setItemClickable(child, false);
+                set.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        setItemClickable(child, false);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
 
             } else { //要打开
                 TranslateAnimation tranAnim = new TranslateAnimation(stopx, 0, stopy, 0);
                 set.addAnimation(tranAnim);
                 AlphaAnimation alphaAnim = new AlphaAnimation(0.0f, 1.0f);
                 set.addAnimation(alphaAnim);
-                setItemClickable(child, true);
+                set.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        setItemClickable(child, false);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        setItemClickable(child, true);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
             }
 
             set.setDuration(duration);
             set.setFillAfter(true);
             child.startAnimation(set);
-            set.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    if (mStatus == STATUS_CLOSE) {
-                        setItemClickable(child, false);
-                    }
-                }
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-
-
-            final int pos = i;
-            child.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mMenuItemClickListener != null) {
-                        mMenuItemClickListener.onItemClick(v, pos);
-                        itemAnim(pos);
-                    }
-                }
-            });
         }
-
 
         if (mStatus == STATUS_OPEN) {
             mStatus = STATUS_CLOSE;
@@ -321,6 +332,10 @@ public class SateliteMenu extends ViewGroup implements View.OnClickListener {
         }
     }
 
+    /**
+     * item点击动画
+     * @param position
+     */
     private void itemAnim(int position) {
         View child;
         int count = getChildCount();

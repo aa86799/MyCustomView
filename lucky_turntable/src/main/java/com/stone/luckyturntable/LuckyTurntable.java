@@ -218,8 +218,8 @@ public class LuckyTurntable extends BaseSurfaceView {
     private void drawImg(Canvas canvas, Bitmap bitmap, float mStartAngle) {
         int bitmapWith = mRadius / 4;//定死宽度
         float r = mRadius / 2; //斜边
-        float l = (float) (r * Math.cos(Math.PI / 180 * (mStartAngle + 360 / mItemCount / 2))); //邻边x
-        float t = (float) (r * Math.sin(Math.PI / 180 * (mStartAngle + 360 / mItemCount / 2))); //对边y
+        float l = (float) (r * Math.cos(Math.PI / 180 * (mStartAngle + 360 / mItemCount / 2))); //半角邻边x
+        float t = (float) (r * Math.sin(Math.PI / 180 * (mStartAngle + 360 / mItemCount / 2))); //半角对边y
         l += mRadius + mPadding; //屏幕中的x点，该点应该是图片的中心点
         t += mRadius + mPadding;
         l -= bitmapWith / 2;

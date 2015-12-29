@@ -1,3 +1,3 @@
-include ':app', ':draglistview', ':draglistviewdemo', ':pinnedheaderexpandablelistview', ':surfaceview_dirty_rect', ':lucky_turntable', ':ninegridlock',
+include ':app', ':draglistview', ':draglistviewdemo', ':pinnedheaderexpandablelistview', ':surfaceview_dirty_rect', ':lucky_turntable', ':ninegridlock', ':bitmapandanimator',
         ':shapeimageview', ':shapeimageviewsample', ':guaguaka', ':flowlayout', ':pintu', ':circleprogressbar',
         ':satellitemenu', ':rouletteview', ':com.stone.customview'

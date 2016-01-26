@@ -136,7 +136,7 @@ public class FlowLayout extends ViewGroup {
                     int rc = lc + child.getMeasuredWidth();
                     int bc = tc + child.getMeasuredHeight();
 
-                    child.layout(lc, tc, rc, bc);
+                    child.layout(lc, tc, rc, bc);//子view请求布局
 
                     left += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
 

@@ -19,9 +19,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private LuckyTurntable mTurntable;
     private ImageView mIvStart;
 
-    private String[] mTitles = new String[]{"单反相机", "恭喜发财", "MacBookPro", "再来一次",
+    private String[] mTitles = new String[]{"单反相机", "恭喜发财", "IPad", "再来一次",
             "IPhone", "谢谢光临", "MacBookPro", "再接再厉"};
-    private int[] mImgRes = {R.drawable.danfan, R.drawable.f015, R.drawable.mac, R.drawable.f040,
+    private int[] mImgRes = {R.drawable.danfan, R.drawable.f015, R.drawable.ipad, R.drawable.f040,
             R.drawable.iphone, R.drawable.f015, R.drawable.mac, R.drawable.f040};
     private int[] mColors = {0xffffc300, 0xfff17101, 0xffffc300, 0xfff17101,
             0xffffc300, 0xfff17101, 0xffffc300, 0xfff17101};

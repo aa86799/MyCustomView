@@ -185,10 +185,11 @@ public class LuckyTurntable extends BaseSurfaceView {
                 boolean win = false;
                 for (int i = 0; i < mRangeList.size(); i++) {
                     range = mRangeList.get(i);
-//                    System.out.println("start angle: " + mRangeList.get(i).from);
-//                    System.out.println("end angle: " + mRangeList.get(i).end);
-
-                    if (actualAngle > range.from && actualAngle < range.end) {//在范围中
+                    System.out.println("start angle: " + mRangeList.get(i).from);
+                    System.out.println("end angle: " + mRangeList.get(i).end);
+                    System.out.println(actualAngle);
+                    if ((actualAngle > range.from && actualAngle < range.end) //在范围中
+                            || (actualAngle > range.from && range.end == 0)) { //比如315度到0(360)度间
                         if (mOnWinListener != null) {
                             mOnWinListener.onWin(i);
                         }

@@ -14,7 +14,6 @@
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
         guaguaka:isAward="true"
         guaguaka:text="￥ 5 0 0 万"
         guaguaka:textColor="#adfdef"
@@ -26,8 +25,12 @@
         android:layout_height="150dp"
         android:layout_below="@+id/st_guaguaka"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="20dp"/>
 
-    <!--guaguaka:text="@string/app_name"/>-->
-
+    <com.stone.guaguaka.view.RipClothes
+        android:id="@+id/rc_rip"
+        android:layout_below="@id/st_guaguaka2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
 </RelativeLayout>

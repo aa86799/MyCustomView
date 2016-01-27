@@ -1,6 +1,5 @@
-
 +  rouletteview 自实现轮盘，仅实现圆形等分绘制，touch点在哪一部份未实现..
-+  ![rouletteview](https://github.com/aa86799/images/blob/master/rouletteview.gif)
++  ![rouletteview](https://github.com/aa86799/images/blob/master/rouletteview.gif)  
 +  satellitemenu 卫星式菜单，绘制四分之一圆，n个item，则夹角为90度/(n-1)
     利用弧度、角度、半径(作三角斜边)，以正、余弦公式求(x,y)
 +  ![satellitemenu](https://github.com/aa86799/images/blob/master/satellitemenu.gif)
@@ -14,7 +13,8 @@
 +  flowlayout 流式布局：一排放不下，换行排列
 +  ![flowlayout](https://github.com/aa86799/images/blob/master/flowlayout.png)
   guaguaka 刮刮卡：paint的图像渲染模式，paint.setXfermode
-+  ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka.gif)
++  ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka1.gif)
+   ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka2.gif)
 +  pintu  拼图：图片分割，动画交换图片
 +  ![pintu](https://github.com/aa86799/images/blob/master/pintu.gif)
 +  surfaceview_dirty_rect 使用dirty rect刷新SurfaceView
@@ -24,4 +24,4 @@
 +  ninegridlock：九宫格锁
 +  ![ninegridlock](https://github.com/aa86799/images/blob/master/ninegridlock.gif)
 +  bitmapandanimator：canvas.drawBitmap(bitmap, srcRect, dstRect, paint)
-+  ![bitmapandanimator](https://github.com/aa86799/images/blob/master/bitmapandanimator.gif)
++  ![bitmapandanimator](https://github.com/aa86799/images/blob/master/bitmapandanimator.gif)  

@@ -12,7 +12,7 @@
 +  ![circleprogressbar](https://github.com/aa86799/images/blob/master/circleprogressbar.gif)
 +  flowlayout 流式布局：一排放不下，换行排列
 +  ![flowlayout](https://github.com/aa86799/images/blob/master/flowlayout.png)
-  guaguaka 刮刮卡：paint的图像渲染模式，paint.setXfermode
+  guaguaka 刮刮卡：paint的图像渲染模式，paint.setXfermode。 撕衣服(见图2)
 +  ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka1.gif)
    ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka2.gif)
 +  pintu  拼图：图片分割，动画交换图片

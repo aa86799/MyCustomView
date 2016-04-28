@@ -27,3 +27,5 @@
 +  ![bitmapandanimator](https://github.com/aa86799/images/blob/master/bitmapandanimator.gif)
 +  animation：自定义动画效果。RectTransView：按当前view的宽高进行矩形移动内容图
 +  ![RectTransView](https://github.com/aa86799/images/blob/master/RectTransView.gif)
++  draggridview：Android 可拖拽的GridView效果实现, 长按可拖拽和item实时交换
++  ![draggridview](https://github.com/aa86799/images/blob/master/draggridview.gif)

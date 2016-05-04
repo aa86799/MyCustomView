@@ -1,6 +1,7 @@
 package com.stone.guaguaka;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class MainActivity extends Activity {
         });
 
         mRipClothes = (RipClothes) findViewById(R.id.rc_rip);
+
+        startActivity(new Intent(this, OverlayActivity.class));
     }
 
 

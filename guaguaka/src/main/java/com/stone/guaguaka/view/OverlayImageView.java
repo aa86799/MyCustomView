@@ -26,7 +26,6 @@ public class OverlayImageView extends View {
 
     private List<Bitmap> mBitmaps;
     private List<Point> mPoints;
-    private List<PorterDuff> mProPorterDuffs;
     private int mWidth;
     private int mHeight;
     private int mPosition;
@@ -44,7 +43,6 @@ public class OverlayImageView extends View {
 
         this.mBitmaps = new ArrayList<>();
         this.mPoints = new ArrayList<>();
-        this.mProPorterDuffs = new ArrayList<>();
     }
 
     @Override

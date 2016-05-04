@@ -15,7 +15,7 @@
   guaguaka 刮刮卡：paint的图像渲染模式，paint.setXfermode。 撕衣服(见图2)
 +  ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka1.gif)
    ![guaguaka](https://github.com/aa86799/images/blob/master/guaguaka2.gif)
-   ![OverlayImageView](https://github.com/aa86799/images/blob/master/OverlayImageView.gif)
++  ![OverlayImageView](https://github.com/aa86799/images/blob/master/OverlayImageView.gif)
 +  pintu  拼图：图片分割，动画交换图片
 +  ![pintu](https://github.com/aa86799/images/blob/master/pintu.gif)
 +  surfaceview_dirty_rect 使用dirty rect刷新SurfaceView

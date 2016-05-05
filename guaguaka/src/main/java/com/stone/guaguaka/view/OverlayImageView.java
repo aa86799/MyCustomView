@@ -29,6 +29,7 @@ public class OverlayImageView extends View {
     private int mWidth;
     private int mHeight;
     private int mPosition;
+    private boolean mIsTouched;
 
     public OverlayImageView(Context context) {
         this(context, null);
@@ -87,10 +88,18 @@ public class OverlayImageView extends View {
 
         Paint paint = new Paint();
         int saveLayerCount = canvas.saveLayer(0, 0, mWidth, mHeight, paint, Canvas.ALL_SAVE_FLAG);//存为新图层
+
         canvas.drawBitmap(mBitmaps.get(mPosition), mPoints.get(mPosition).x, mPoints.get(mPosition).y, paint); //dst
+//        paint.setColor(Color.BLACK);
+//        paint.setAlpha(50);
+//        Point p = mPoints.get(mPosition);
+//        canvas.drawRect(p.x, p.y, p.x + mWidth / 2, p.y + mHeight / 2, paint);
+
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
+//        paint.setAlpha(255);
         canvas.drawBitmap(outBitmap, 0, 0, paint); //src
         paint.setXfermode(null);
+
         canvas.restoreToCount(saveLayerCount); //恢复保存的图层
 
 
@@ -142,6 +151,7 @@ public class OverlayImageView extends View {
                 if (mPosition != getTouchPosition(x, y)) {
                     mPosition = getTouchPosition(x, y);
                 }
+                mIsTouched = true;
                 invalidate();
                 break;
 
@@ -149,6 +159,8 @@ public class OverlayImageView extends View {
                 break;
 
             case MotionEvent.ACTION_UP:
+                mIsTouched = false;
+                invalidate();
                 break;
 
 

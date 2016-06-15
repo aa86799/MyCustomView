@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ProgressBar;
 
 import com.stone.circleprogressbar.view.CircleProgressbar;
 import com.stone.circleprogressbar.view.ObliqueProgressbar;
@@ -13,13 +14,17 @@ import java.util.Random;
 
 public class MainActivity extends Activity {
 
-    private CircleProgressbar mProgressbar;
+    private CircleProgressbar mCircleProgressbar;
     private float mCircleProgress;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (mCircleProgress > 100f) return;
-            mProgressbar.setProgress(twoFraction(mCircleProgress));
+            if (mCircleProgress > 100f) {
+                mCircleProgress = 100.00f;
+                mCircleProgressbar.setProgress(twoFraction(mCircleProgress));
+                return;
+            }
+            mCircleProgressbar.setProgress(twoFraction(mCircleProgress));
             mCircleProgress += 2.33f;
             mCircleProgress = twoFraction(mCircleProgress);
             mHandler.sendEmptyMessageDelayed(0, new Random().nextInt(50) + 200);
@@ -27,20 +32,34 @@ public class MainActivity extends Activity {
     };
 
     private ObliqueProgressbar mObliqueProgressbar;
-    private float mProgress;
+    private float mObProgress;
     private Handler mObHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
-            if (mProgress >= 1.0f) {
-                mObliqueProgressbar.setProgress(0);
+            if (mObProgress >= 1.1f) {
+                mObliqueProgressbar.setProgress(mObProgress);
                 return;
             }
-            mProgress += 0.04;
-            mObliqueProgressbar.setProgress(mProgress);
+            mObProgress += 0.04;
+            mObliqueProgressbar.setProgress(mObProgress);
             mObHandler.sendEmptyMessageDelayed(0, new Random().nextInt(50) + 400);
         }
     };
 
+    private ProgressBar mProgressBar;
+    private Handler mHoriHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            int progress = mProgressBar.getProgress();
+            mProgressBar.setProgress(++progress);
+            if (progress >= 100) {
+                return;
+
+            }
+            mHoriHandler.sendEmptyMessageDelayed(0, 100);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +67,14 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        mProgressbar = (CircleProgressbar) findViewById(R.id.cp_bar);
+        mCircleProgressbar = (CircleProgressbar) findViewById(R.id.cp_bar);
         mHandler.sendEmptyMessage(0);
 
         mObliqueProgressbar = (ObliqueProgressbar) findViewById(R.id.op_bar);
         mObHandler.sendEmptyMessage(0);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_bar);
+        mHoriHandler.sendEmptyMessageDelayed(0, 100);
 
     }
 

@@ -94,13 +94,14 @@ public class CircleProgressbar extends View {
 
         /* 文本 */
         paint.setColor(mTextColor);
+
+        paint.setTextAlign(Paint.Align.LEFT);//default
+        String percent = mProgress + "%";
         if (mTextSize == 0) {
-            calcTextSize(paint, w, strokeWidth);
+            calcTextSize(paint, w);
         } else {
             paint.setTextSize(mTextSize);
         }
-        paint.setTextAlign(Paint.Align.LEFT);//default
-        String percent = mProgress + "%";
         paint.setStyle(Paint.Style.FILL);
         circleCanvas.drawText(percent, w / 2 - paint.measureText(percent) / 2, h / 2 + paint.getTextSize() / 2, paint);
 
@@ -112,13 +113,12 @@ public class CircleProgressbar extends View {
      *
      * @param paint
      * @param max    最大宽度
-     * @param offset 偏移
      */
-    private void calcTextSize(Paint paint, int max, int offset) {
+    private void calcTextSize(Paint paint, int max) {
         float width = paint.measureText("99.99%");
         while (width < max * 3 / 5) {
             paint.setTextSize(paint.getTextSize() + 5);
-            width = paint.measureText("92.88%") + offset / 2;
+            width = paint.measureText("92.88%");
         }
         mTextSize = paint.getTextSize();
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="test" format="integer"/>
+    <declare-styleable name="customView">
+        <attr name="test"/> <!-- 复用声明在外部的属性定义test  -->
+
+        <attr name="atr1" format="reference"/> <!-- 参考引用某个资源 如@drawable/img-->
+        <attr name="atr2" format="string"/> <!-- 属性为string类型 -->
+        <attr name="atr3" format="string|reference"/> <!--  string类型或引用 -->
+        <attr name="atr4" format="boolean"/> <!-- 布尔型 true false  -->
+        <attr name="atr5" format="integer"/> <!-- 整数 -->
+        <attr name="atr6" format="float"/> <!-- 浮点  -->
+        <attr name="atr7" format="color"/> <!-- 颜色值 #rgb  #rrggbb #argb #aarrggbb -->
+        <attr name="atr8" format="dimension"/> <!-- 尺寸值 -->
+        <attr name="atr9" format="fraction"/> <!-- 百分比 -->
+        <attr name="atr10"> <!-- enum -->
+            <enum name="spring" value="1"/>
+            <enum name="summer" value="2"/>
+        </attr>
+        <attr name="art11"> <!-- 位或运算 表示 spring|summber  -->
+            <flag name="spring" value="4"/>
+            <flag name="summer" value="8"/>
+        </attr>
+    </declare-styleable>
+</resources>

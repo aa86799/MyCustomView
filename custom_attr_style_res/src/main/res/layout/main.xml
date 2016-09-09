@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.stone.cus.view.CustomView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="自定义按钮"
+        android:textSize="20sp"
+        custom:atr2="Stone"
+        custom:atr5="100"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button.Small"
+        android:text="普通的按钮"/>
+</LinearLayout>

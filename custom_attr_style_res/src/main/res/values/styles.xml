@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="StoneStyle1">
+        <item name="atr2">哈哈</item>
+        <item name="atr5">188</item>
+        <item name="android:textSize">44sp</item>
+    </style>
+    <style name="StoneStyle2">
+        <item name="atr2">呼呼</item>
+        <item name="atr5">288</item>
+        <item name="android:textSize">88sp</item>
+    </style>
+</resources>

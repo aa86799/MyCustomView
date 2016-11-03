@@ -23,8 +23,6 @@ import java.util.List;
  */
 public class HorizonTurnPageView extends View {
 
-    private Paint mPaint;
-    private Path mPath;
     private List<Bitmap> mBitmaps;
     private float mClipX; //裁剪右端点坐标
     private float mCurPointX;// 指尖触碰屏幕时点X的坐标值
@@ -45,7 +43,7 @@ public class HorizonTurnPageView extends View {
     public void setBitmaps(List<Bitmap> bitmaps) {
         if (null == bitmaps || bitmaps.size() == 0) return;
         this.mBitmaps = bitmaps;
-
+        System.out.println("setBitmaps");
         invalidate();
     }
 
@@ -53,6 +51,9 @@ public class HorizonTurnPageView extends View {
      * 图片倒序:集合中最先加入的图(最后绘制)就能绘制在最上层
      */
     private void initBitmaps() {
+        if (mBitmaps == null) {
+            return;
+        }
         List<Bitmap> temp = new ArrayList<Bitmap>();
         for (int i = mBitmaps.size() - 1; i >= 0; i--) {
             Bitmap bitmap = Bitmap.createScaledBitmap(mBitmaps.get(i), getWidth(), getHeight(), true);
@@ -81,8 +82,8 @@ public class HorizonTurnPageView extends View {
         mPageIndex = mPageIndex < 0 ? 0 : mPageIndex;
         mPageIndex = mPageIndex > mBitmaps.size() ? mBitmaps.size() : mPageIndex;
         // 计算数据起始位置
-        int start = mBitmaps.size() - 2 - mPageIndex;
-        int end = mBitmaps.size() - mPageIndex;
+        int start = mBitmaps.size() - 2 - mPageIndex;//mBitmaps.size() - 2 表示倒数第二个
+        int end = mBitmaps.size() - mPageIndex;   // end - start = 2
         /*
          * 如果数据起点位置小于0则表示当前已经到了最后一张图片
          */
@@ -94,10 +95,9 @@ public class HorizonTurnPageView extends View {
             start = 0;
             end = 1;
         }
-
-        for (int i = start; i < end; i++) {
+        for (int i = start; i < end; i++) {//end - start = 2   这里最多循环两次
             if (!mIsLastPage && i == end - 1) {
-                canvas.clipRect(0, 0, mClipX, getHeight());
+                canvas.clipRect(0, 0, mClipX, getHeight()); //之后的绘制会相对当前裁剪区
             }
             canvas.drawBitmap(mBitmaps.get(i), 0, 0, null);
         }
@@ -127,7 +127,7 @@ public class HorizonTurnPageView extends View {
                 /*
                  * 如果当前页不是最后一页
                  * 如果是需要翻下一页
-                 * 并且上一页已被clip掉
+                 * 并且上一页已被clip掉，即judgeSlideAuto中执行了向左
                  */
                 if (!mIsLastPage && mIsNextPage && mClipX <= 0) {
                     mPageIndex++;
@@ -163,7 +163,7 @@ public class HorizonTurnPageView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
+        System.out.println("onSizeChanged");
         initBitmaps();
 
         mClipX = getWidth();

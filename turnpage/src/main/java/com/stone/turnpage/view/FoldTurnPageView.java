@@ -193,7 +193,7 @@ public class FoldTurnPageView extends View {
                 mTouchX = x;
                 mTouchY = y;
                 if (mIsNextPage) {
-                    if (x > mAutoAreaRight && y > mAutoAreaBottom) {
+                    if (x > mAutoAreaRight && y > mAutoAreaBottom && !mIsLastPage) {
                         mSlide = RIGHT_BOTTOM;
                         startSlide(x, y);
                     } else if (x < mAutoAreaLeft) {

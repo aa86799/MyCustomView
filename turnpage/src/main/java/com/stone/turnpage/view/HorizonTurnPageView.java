@@ -185,12 +185,15 @@ public class HorizonTurnPageView extends View {
 
     private void showToast(final Object msg) {
         mHandler.removeCallbacksAndMessages(null);
-        mMsgCallback = new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(), msg.toString(), Toast.LENGTH_SHORT).show();
-            }
-        };
+        if (mMsgCallback == null) {
+            mMsgCallback = new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), msg.toString(), Toast.LENGTH_SHORT).show();
+                }
+            };
+        }
+
         mHandler.postDelayed(mMsgCallback, 200);
 
     }

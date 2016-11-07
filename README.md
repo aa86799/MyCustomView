@@ -30,7 +30,9 @@
 +  ![RectTransView](https://github.com/aa86799/images/blob/master/RectTransView.gif)
 +  draggridview：Android 可拖拽的GridView效果实现, 长按可拖拽和item实时交换
 +  ![draggridview](https://github.com/aa86799/images/blob/master/draggridview.gif)
-+  taichi：绘制一个 taichi 
++  taichi：绘制一个 taichi
 +  ![taichi](https://github.com/aa86799/images/blob/master/taichi.gif)
 +  turnpage：翻页
 +  ![taichi](https://github.com/aa86799/images/blob/master/foldturnpage.gif)
++  clock：时钟View
++  ![taichi](https://github.com/aa86799/images/blob/master/clock.gif)

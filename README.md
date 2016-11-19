@@ -36,3 +36,5 @@
 +  ![taichi](https://github.com/aa86799/images/blob/master/foldturnpage.gif)
 +  clock：时钟View
 +  ![taichi](https://github.com/aa86799/images/blob/master/clock.gif)
++  zhima：正多边形(regular polygon)View 
++  ![taichi](https://github.com/aa86799/images/blob/master/regular_polygon.gif)

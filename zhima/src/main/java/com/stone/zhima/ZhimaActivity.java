@@ -6,9 +6,10 @@ import android.os.Bundle;
 import com.stone.zhima.view.ZhimaView;
 
 /**
- * desc   :
- * author : Shi Zongyin
- * email  : shizongyin@znds.com
+ * 仿芝麻信用分析的 正多边形绘制
+ * author : stone
+ * email  : aa86799@163.com
+ * time   : 2016/11/17 14 10
  */
 
 public class ZhimaActivity extends Activity {

@@ -8,4 +8,9 @@
         android:layout_height="wrap_content"
         android:onClick="bs"
         android:text="BitmapShader实现圆形以及放大镜效果"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="lg"
+        android:text="LinearGradient实现文本每个字符颜色变化"/>
 </LinearLayout>

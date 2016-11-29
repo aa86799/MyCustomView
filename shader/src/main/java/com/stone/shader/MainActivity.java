@@ -18,7 +18,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_acti);
 
-        startActi(BSActivity.class);
     }
 
     private void startActi(Class<? extends Activity> clz) {
@@ -27,5 +26,9 @@ public class MainActivity extends Activity {
 
     public void bs(View view) {
         startActi(BSActivity.class);
+    }
+
+    public void lg(View view) {
+        startActi(LGActivity.class);
     }
 }

@@ -14,6 +14,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".BSActivity" android:hardwareAccelerated="false"/>
+        <activity android:name=".LGActivity" android:hardwareAccelerated="false"/>
     </application>
 
 </manifest>

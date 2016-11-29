@@ -38,3 +38,5 @@
 +  ![taichi](https://github.com/aa86799/images/blob/master/clock.gif)
 +  zhima：正多边形(regular polygon)View 
 +  ![taichi](https://github.com/aa86799/images/blob/master/regular_polygon.gif)
++  shader： BitmapShaderView(实现图片局部放大镜效果，分析了为什么要矩阵平移，配合./bsview.png)
++  ![taichi](https://github.com/aa86799/images/blob/master/bsview.gif)

@@ -7,8 +7,6 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -72,6 +70,7 @@ public class BitmapShaderView extends View {
         mDrawable = new ShapeDrawable(new OvalShape());
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(mSrcBitmap, mBmW * mScale, mBmH * mScale, true);
         mShaderScale = new BitmapShader(scaledBitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);//缩放
+//        mShaderScale = new BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);//缩放
         mDrawable.getPaint().setShader(mShaderScale);
 
         matrix = new Matrix();
@@ -93,14 +92,16 @@ public class BitmapShaderView extends View {
             在不同的坐标点绘制图形，即可绘制上对应坐标区域内BitmapShader中的图片
          */
 //        canvas.translate(300, 300);
-        canvas.drawRect(new Rect(0, 0, mBmW/2, mBmH/2), mPaint);
+//        canvas.drawRect(new Rect(0, 0, mBmW/2, mBmH/2), mPaint);
 
-        canvas.drawOval(new RectF(mBmW/2 + 20, mBmW/2, mBmW, mBmH), mPaint);
+//        canvas.drawOval(new RectF(mBmW/2 + 20, mBmW/2, mBmW, mBmH), mPaint);
 
-        canvas.drawCircle(mBmW/2, mBmH/2, mMin/2, mPaint);
+//        canvas.drawCircle(mBmW/2, mBmH/2, mMin/2, mPaint);
 
+//        canvas.drawRect(0, 0, mBmW, mBmH, mPaint); //原图
 
         //在下方绘制原图
+//        canvas.drawBitmap(mSrcBitmap, 0, 100, null);
         canvas.drawBitmap(mSrcBitmap, 0, mMin + mBmH/2 + 10, null);
         /*
         绘制使用了BitmapShader的 ShapeDrawable
@@ -118,11 +119,12 @@ public class BitmapShaderView extends View {
         int y = (int) event.getY();
         /*
         当shader的图片，相对于自身，平移到(-a,-b)时，这时的原点显示shader中原图的(a,b)位置内容
+        测试时，配合  canvas.drawRect(0, 0, mBmW, mBmH, mPaint);
          */
 //        matrix.setTranslate(-mBmW/2, -mBmH/2);
 
         /*
-        测试时使mScale = 1， 且不绘制原图
+        测试时使mScale = 1， 配合 canvas.drawRect(0, 0, mBmW, mBmH, mPaint);
         没有缩放, 进行平移后，即drawable-bounds的起始点变化到平移点，再以下方的范围来绘制
         为什么要用半径减去x、y：
             若直接使用(-x, -y)，即平移后，显示触摸点及之下的内容(当然，如果触摸点在图片之外时，显示的内容受Shader.TileMode影响)
@@ -139,11 +141,14 @@ public class BitmapShaderView extends View {
 
         /*
         如果在上面的基础上再进行了缩放 mScale >= 2; 且canvas.drawBitmap(mSrcBitmap, 0, mMin + mBmH/2 + 10, null);
+        同时配合TileMode.REPEAT来实现以下方式：
          */
-        int sy = 0;
-        if (mMin + mBmH / 2 + 10 > mBmH) {
-            sy = mMin + mBmH/2 + 10 % mBmH;
-        }
+//        int sy = 100 % mBmH;//测试下面的算法，配合canvas.drawBitmap(mSrcBitmap, 0, 100, null);
+       int sy = (mMin + mBmH/2 + 10) % mBmH;
+        /*
+        同理，如果绘制原图时，有x值，要用 sx = x % mBmW;
+         */
+//        matrix.setTranslate(mRadius - x * mScale, mRadius - y  * mScale);//如果原图的绘制在x、y上都等于0的情况下
         matrix.setTranslate(mRadius - x * mScale, mRadius - y * mScale + sy * mScale);
 
         mDrawable.getPaint().getShader().setLocalMatrix(matrix);
@@ -152,6 +157,7 @@ public class BitmapShaderView extends View {
          设置一个以(x,y)为中点的正方形范围-内容区，仅指大小；边长为mRadius
          */
         mDrawable.setBounds(x - mRadius, y - mRadius, x + mRadius, y + mRadius);
+
         invalidate();
         return true;
     }

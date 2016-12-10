@@ -4,12 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 仿芝麻信用分析的 正多边形绘制
@@ -23,7 +25,8 @@ public class ZhimaView extends View {
     private float mR, mCx, mCy;
     private static final int mN = 10;
     private static final float DEGREES_UNIT = 360 / mN; //正N边形每个角  360/mN能整除
-    private static float mRotateDegrees = 30;
+    private static float mRotateDegrees;
+    private Path mPath, mPath1;
 
     public ZhimaView(Context context) {
         this(context, null);
@@ -47,6 +50,9 @@ public class ZhimaView extends View {
         mCx = mW / 2;
         mCy = mH / 2;
         mR = Math.min(mCx, mCy) / 4 * 3;
+
+        mPath = new Path();
+        mPath1 = new Path();
     }
 
     @Override
@@ -55,7 +61,7 @@ public class ZhimaView extends View {
 
         canvas.drawColor(Color.WHITE);
 
-        mPaint.setColor(Color.BLUE);
+        mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.STROKE);
 
         /*
@@ -86,43 +92,49 @@ public class ZhimaView extends View {
         canvas.save();
         canvas.rotate(mRotateDegrees, mCx, mCy);
         float bx, by;
-        ArrayList<PointF> points = new ArrayList<>();
+        mPath.rewind();
+        mPath1.rewind();
         for (int i = 0; i < mN; i++) {
-            bx = mCx + (float) (mR * Math.sin((90 - DEGREES_UNIT * i) * Math.PI / 180));
-            by = mCy + (float) (mR * Math.cos((90 - DEGREES_UNIT * i) * Math.PI / 180));
-            canvas.drawLine(mCx, mCy, bx, by, mPaint);
-            points.add(new PointF(bx, by));
+//            bx = mCx + (float) (mR * Math.sin((90 - DEGREES_UNIT * i) * Math.PI / 180));
+//            by = mCy + (float) (mR * Math.cos((90 - DEGREES_UNIT * i) * Math.PI / 180));
+            bx = mCx + (float) (mR * Math.cos((DEGREES_UNIT * i) * Math.PI / 180));
+            by = mCy + (float) (mR * Math.sin((DEGREES_UNIT * i) * Math.PI / 180));
+            mPath.moveTo(mCx, mCy);
+            mPath.lineTo(bx, by);
+            if (i == 0) {
+                mPath1.moveTo(bx, by);
+            } else {
+                mPath1.lineTo(bx, by);
+            }
         }
-
-        PointF p, p1;
-        for (int i = 0; i < points.size() - 1; i++) {
-            p = points.get(i);
-            p1 = points.get(i + 1);
-            canvas.drawLine(p.x, p.y, p1.x, p1.y, mPaint);
-        }
-        p = points.get(0);
-        p1 = points.get(points.size() - 1);
-        canvas.drawLine(p.x, p.y, p1.x, p1.y, mPaint);
+        canvas.drawPath(mPath, mPaint);
+        mPath1.close();//闭合path，从而连接出一条最后起点与终点间的直线
+        canvas.drawPath(mPath1, mPaint);
         canvas.restore();
 
-        /*
-        如果要在圆上各顶点外绘制文字图片 只需要增大半径
 
-        假设对图片上任意点(x,y)，绕一个坐标点(cx,cy)逆时针旋转a角度后的新的坐标设为(x0, y0)，有公式
-         x0 = (x - cx)*cos(a) - (y - cy)*sin(a) + cx;
-         y0 = (x - cx)*sin(a) + (y - cy)*cos(a) + cy;
-         */
-        points.clear();
+//        如果要在圆上各顶点外绘制文字图片 只需要增大半径
+        List<PointF> points = new ArrayList<>();
         float r = mR + mR / 8;
         for (int i = 0; i < mN; i++) {
-            bx = mCx + (float) (r * Math.sin((90 - DEGREES_UNIT * i) * Math.PI / 180));
-            by = mCy + (float) (r * Math.cos((90 - DEGREES_UNIT * i) * Math.PI / 180));
+//            bx = mCx + (float) (r * Math.sin((90 - DEGREES_UNIT * i) * Math.PI / 180));
+//            by = mCy + (float) (r * Math.cos((90 - DEGREES_UNIT * i) * Math.PI / 180));
+            bx = mCx + (float) (r * Math.cos((DEGREES_UNIT * i) * Math.PI / 180));
+            by = mCy + (float) (r * Math.sin((DEGREES_UNIT * i) * Math.PI / 180));
             points.add(new PointF(bx, by));
         }
 
         mPaint.setTextSize(mR / 15);
 
+
+        /*
+        假设对图片上任意点(x,y)，绕一个坐标点(cx,cy)逆时针旋转a角度后的新的坐标设为(x0, y0)，有公式
+             x0 = (x - cx)*cos(a) - (y - cy)*sin(a) + cx;
+             y0 = (x - cx)*sin(a) + (y - cy)*cos(a) + cy;
+         */
+
         float rx, ry;
+        PointF p;
         for (int i = 0; i < mN; i++) {
             p = points.get(i);
             rx = (float) (mCx + (p.x - mCx) * Math.cos(mRotateDegrees * Math.PI / 180) - (p.y - mCy)
@@ -137,6 +149,7 @@ public class ZhimaView extends View {
             System.out.println(mPaint.getFontMetricsInt().bottom);
             float ty = ry + mPaint.getFontMetricsInt().bottom;
 
+//            canvas.drawText(text, p.x, p.y, mPaint);
             canvas.drawText(text, tx, ty, mPaint);
 
 

@@ -1,3 +1,4 @@
++  [![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=plastic)](https://github.com/aa86799/MyCustomView)  
 +  rouletteview 自实现轮盘，仅实现圆形等分绘制，touch点在哪一部份未实现..
 +  ![rouletteview](https://github.com/aa86799/images/blob/master/rouletteview.gif)  
 +  satellitemenu 卫星式菜单，绘制四分之一圆，n个item，则夹角为90度/(n-1)
@@ -32,7 +33,7 @@
 +  ![draggridview](https://github.com/aa86799/images/blob/master/draggridview.gif)
 +  taichi：绘制一个 taichi
 +  ![taichi](https://github.com/aa86799/images/blob/master/taichi.gif)
-+  turnpage：翻页
++  turnpage：翻页   FoldTurnPageView(折线翻页)
 +  ![taichi](https://github.com/aa86799/images/blob/master/foldturnpage.gif)
 +  clock：时钟View
 +  ![taichi](https://github.com/aa86799/images/blob/master/clock.gif)

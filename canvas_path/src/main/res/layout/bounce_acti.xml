@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100px">
+
+            <View
+                android:layout_width="720px"
+                android:layout_height="300px"
+                android:background="#abc777"/>
+
+            <View
+                android:layout_width="720px"
+                android:layout_height="300px"
+                android:layout_marginLeft="100px"
+                android:background="#777aaf"/>
+
+            <View
+                android:layout_width="720px"
+                android:layout_height="300px"
+                android:layout_marginLeft="100px"
+                android:background="#6f00ff"/>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:background="#33cccccc">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100px">
+
+            <Button
+                android:id="@+id/btn01"
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:layout_marginLeft="120px"
+                android:background="#00ff00"/>
+
+            <Button
+                android:id="@+id/btn02"
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:layout_marginLeft="120px"
+                android:background="#00ff00"/>
+
+            <Button
+                android:id="@+id/btn03"
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:layout_marginLeft="120px"
+                android:background="#00ff00"/>
+
+        </LinearLayout>
+
+        <com.stone.canvaspath.bounce.BounceCircleView
+            android:id="@+id/bcv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+    <com.stone.canvaspath.bounce.MagicCircle
+        android:id="@+id/mc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
